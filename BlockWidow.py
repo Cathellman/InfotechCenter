@@ -3,9 +3,9 @@ import sys
 from time import sleep
 
 
-print('Welcome Branch - Developer: Thellman')
+print('\nWelcome Branch - Developer: Thellman')
 
-print("\n\tWelcome to InfoTechCenter v1.0")
+print("\nWelcome to InfoTechCenter v1.0\n")
 
 
 x = 0
@@ -20,4 +20,4 @@ while x != 20:
    if ellipsis == 4:
        ellipsis = 0
    if x == 20:
-       print("\n\nOperating System Booted Up - Retina Scanned - Access Granted")
+       print("\n\nOperating System Booted Up - Retina Scanned - Access Granted\n")
