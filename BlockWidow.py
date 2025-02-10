@@ -10,6 +10,9 @@ from time import sleep
 # Weather Function to determine the weather
 
 def weather():
+
+    #Random Choice of weather condition
+
     weatherForecastList = ['snowing', 'blizzard', 'icy', 'rainy', 'windy', 'sunny', 'death']
     weatherCondition = random.choice(weatherForecastList)
 
@@ -20,9 +23,11 @@ def weather():
             weather() 
     return weatherCondition
 
-
+# VRS code to print the weather message, after choosing a random weather condition 
 
 def vehicleResponcseSystem():
+    # Stores a random weather condition into the 'currentWeather' var
+    # Then it gose through and cheackts to see what the random one matches , then prints message 
     currentWeather = weather()
 
     if currentWeather == 'snowing': 
