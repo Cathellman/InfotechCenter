@@ -29,22 +29,25 @@ def vehicleResponcseSystem():
         print("\nThe National Weather Service has updated our alarm by 30 minutes because of the snow\n\n Weather Condition: ", currentWeather)
 
     elif currentWeather == 'blizzard': 
-        print("\nThe National Weather Service has updated our alarm by 30 minutes because of the blizzard\n\n Weather Condition: ", currentWeather)
+        print("\nThe National Weather Service has updated our alarm by 60 minutes because of the blizzard\n\n Weather Condition: ", currentWeather)
 
     elif currentWeather == 'icy': 
         print("\nThe National Weather Service has updated our alarm by 30 minutes because its icy\n\n Weather Condition: ", currentWeather)
 
     elif currentWeather == 'rainy': 
-        print("\nThe National Weather Service has updated our alarm by 30 minutes because its rainy\n\n Weather Condition: ", currentWeather)
+        print("\nThe National Weather Service has updated our alarm by 15 minutes because its rainy\n\n Weather Condition: ", currentWeather)
 
     elif currentWeather == 'windy': 
-        print("\nThe National Weather Service has updated our alarm by 30 minutes because its windy\n\n Weather Condition: ", currentWeather)
+        print("\nThe National Weather Service has updated our alarm by 10 minutes because its windy\n\n Weather Condition: ", currentWeather)
 
     elif currentWeather == 'sunny': 
         print("\nThe National Weather Service has not updated anything, its a good day!\n\n Weather Condition: ", currentWeather)
 
     elif currentWeather == 'death': 
         print("Your Dead.")
+    
+    else:
+        print("Error In The Code, Not A Proper Choice!")
 
     print("\n\n")
 
