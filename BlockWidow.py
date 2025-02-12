@@ -1,11 +1,11 @@
 
 print('\n<--************************************-->\n')
 
-print('Weather Branch - Developer: Thellman\n')
 
 #Import Libraries Here!
 
 import random
+import sys
 from time import sleep
 
 # Weather Function to determine the weather
@@ -70,9 +70,6 @@ def vehicleResponcseSystem():
 
 
 
-import sys
-from time import sleep
-
 # ANSI escape codes for terminal colors
 RESET = "\033[0m"  # Resets the color to default
 BOLD = "\033[1m"  # Bold text formatting
@@ -100,7 +97,7 @@ while x != 20:
 
    # Write the message to stdout (console) without a newline, with a reset color at the end
    sys.stdout.write(f"\r{message}{RESET}")  
-   sleep(.5)  # Pause for 0.5 seconds to simulate a delay between updates
+   sleep(.3)  # Pause for 0.5 seconds to simulate a delay between updates
 
    # Reset the ellipsis counter after 3 dots (creates a repeating cycle of 0-3 dots)
    if ellipsis == 4:
