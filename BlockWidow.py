@@ -11,8 +11,8 @@ def gasLevelGauge():
 
 gaslevel = gasLevelGauge()
 
-startTime = datetime.now().minute
-current_time = datetime.now().minute
+startTime = datetime.now().second
+
 
 def gasStations():
     gasStations = ['Shell', 'Marathon', 'SpeedWay', 'Circle K', 'Wesco', 'Meijer', 'Buc-ees', 'Cosco']
@@ -46,8 +46,8 @@ def gaslevelCheck():
 gaslevelCheck()
 i = 0
 while True:
-    if startTime > current_time:
-        startTime = current_time
+    if startTime + 5 < datetime.now().second:
+        startTime = datetime.now().second
         i = i + 1
         gaslevelCheck()
         if i > 2:
