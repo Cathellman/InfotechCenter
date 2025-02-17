@@ -10,10 +10,9 @@ def gasLevelGauge():
     return random.choice(gasLevelList)
 
 gaslevel = gasLevelGauge()
-current_time = datetime.now().time()
 
 startTime = datetime.now().minute
-print(startTime)
+current_time = datetime.now().minute
 
 def gasStations():
     gasStations = ['Shell', 'Marathon', 'SpeedWay', 'Circle K', 'Wesco', 'Meijer', 'Buc-ees', 'Cosco']
@@ -35,5 +34,22 @@ def gaslevelCheck():
         print('Quarter Tank. How could you.\n')
         sleep(0.5)
         print("The closest gas station is", gasStations(), "which is" , milesToGasStationQuTank, 'miles away\n')
+    elif gaslevel == 'Half Tank':
+        print('Half Tank.\n')
+    elif gaslevel == 'Three Quarter Tank':
+        print('Three Quarter Tank.\n')
+    else:
+        print('Full')
+        
+
 
 gaslevelCheck()
+i = 0
+while True:
+    if startTime > current_time:
+        startTime = current_time
+        i = i + 1
+        gaslevelCheck()
+        if i > 2:
+            i = 0
+            gaslevel = gasLevelGauge()
