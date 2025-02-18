@@ -1,0 +1,5 @@
+*.sqlite
+.vs/InfotechCenter/v17/DocumentLayout.backup.json
+.vs/InfotechCenter/FileContentIndex/340e7e10-8561-4258-bfe7-089ffa86c689.vsidx
+.vs/InfotechCenter/FileContentIndex/59e3c8a4-9c04-4fda-bf72-7f9246863286.vsidx
+*.vsidx
