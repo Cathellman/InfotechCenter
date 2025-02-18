@@ -1,3 +1,4 @@
+import glob
 from time import sleep
 
 defaultMap = [
@@ -19,9 +20,14 @@ currentMap = [
 oldPos = [2,2]
 currentPos = [2,2]
 
+global gx
+global gy
+gx = 0
+gy = 0
 
 
 def printMap():
+    print('\n', currentPos)
     print('\n')
     for row in currentMap:
         for element in row:
@@ -38,6 +44,23 @@ def reset():
 
 
 def setPlayer():
+    if currentPos[0] == 5:
+        currentPos[0] = 0
+        #gx += 1
+
+    if currentPos[1] == 5:
+        currentPos[1] = 0
+        #gy += 1
+
+    if currentPos[0] == -1:
+        currentPos[0] = 5
+        #gx -= 1
+
+    if currentPos[1] == -1:
+        currentPos[1] = 5
+       # gy -= 1
+    
+
     currentMap[currentPos[0]][currentPos[1]] = 'O'
     
 
