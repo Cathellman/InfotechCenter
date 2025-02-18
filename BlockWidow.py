@@ -46,7 +46,7 @@ def gaslevelCheck():
     milesToGasStationLow = round(random.uniform(1,25),1)
     milesToGasStationQuTank = round(random.uniform(25.1,50),1)
 
-    
+
     if gaslevel == 'empty':
         typing("Empty. \n", normal)
         sleep(wait)
