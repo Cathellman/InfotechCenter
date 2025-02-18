@@ -1,13 +1,21 @@
 import random
 from datetime import datetime
 from time import sleep
-import os
+import sys
 import platform
+import os
 
 print("\n***************************\n")
 print("Gasoline Branch - Developer: Thellman\n")
 
 wait = 1
+normal = 0.05
+
+def typing(text, time):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        sleep(time)
 
 def getSystem():
     os_name = platform.system()
@@ -21,7 +29,9 @@ def getSystem():
         return "Unknown OS"
 
 def clear():
-    print('\n' * 4)
+    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+
+
 
 def gasLevelGauge():
     global  gasLevelList
@@ -36,37 +46,37 @@ def gaslevelCheck():
     milesToGasStationLow = round(random.uniform(1,25),1)
     milesToGasStationQuTank = round(random.uniform(25.1,50),1)
 
-    clear()
+    
     if gaslevel == 'empty':
-        print("Empty. \n")
+        typing("Empty. \n", normal)
         sleep(wait)
+        typing("Calling AAA.",  normal)
         clear()
-        print("Calling AAA")
 
     elif gaslevel == 'Low':
-        print('Low. \n')
+        typing('Low. \n', normal)
         sleep(wait)
+        typing("The closest gas station is "+ gasStations() + " which is " + str(milesToGasStationLow) + ' miles away.\n', normal)
         clear()
-        print("The closest gas station is", gasStations(), "which is" , milesToGasStationLow, 'miles away\n')
 
     elif gaslevel == 'Quarter Tank':
-        print('1/4. \n')
+        typing('1/4 Tank. \n', normal)
         sleep(wait)
+        typing("The closest gas station is "+ gasStations() +  " which is " + str(milesToGasStationQuTank) +  ' miles away.\n', normal)
         clear()
-        print("The closest gas station is", gasStations(), "which is" , milesToGasStationQuTank, 'miles away\n')
 
     elif gaslevel == 'Half Tank':
-        print('2/4 Tank.\n')
+        typing('2/4 Tank.\n', normal)
         sleep(wait)
         clear()
 
     elif gaslevel == 'Three Quarter Tank':
-        print('3/4 Tank.\n')
+        typing('3/4 Tank.\n', normal)
         sleep(wait)
         clear()
 
     else:
-        print('Full')
+        typing('Full.\n', normal)
         sleep(wait)
         clear()
 
@@ -81,7 +91,7 @@ gaslevelCheck()
 i = 0
 while True:
     sleep(0.1)
-    if startTime + 3 < datetime.now().second:
+    if startTime + 5 < datetime.now().second:
         startTime = datetime.now().second
         i = i + 1
         gaslevelCheck()
@@ -89,6 +99,6 @@ while True:
             i = 0
             index = gasLevelList.index(gaslevel)
             if index == 0:
-                print("Get gas now\n")
+                print("\nGet gas now\n")
             else:
                 gaslevel = gasLevelList[index - 1]
