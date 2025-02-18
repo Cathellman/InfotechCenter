@@ -27,6 +27,7 @@ def printMap():
         for element in row:
             print(element, end=" ")
         print()
+    sleep(0.5)
     
 def reset():
    oldPos[0] = currentPos[0]
@@ -38,28 +39,33 @@ def reset():
 
 def setPlayer():
     currentMap[currentPos[0]][currentPos[1]] = 'O'
-    print(oldPos)
+    
 
 
 def move():
     
     move = input('\n -> ')
-    if move == 'd':
-        currentPos[1] += 1
+    for i in move:
+        if i == 'd':
+            currentPos[1] += 1
 
-    elif move == 'a':
-        currentPos[1] -= 1
+        elif i == 'a':
+            currentPos[1] -= 1
 
-    elif move == 's':
-        currentPos[0] += 1
+        elif i == 's':
+            currentPos[0] += 1
 
-    elif move == 'w':
-        currentPos[0] -= 1
+        elif i == 'w':
+            currentPos[0] -= 1
+        setPlayer()
+        printMap()
+        reset()
+
+setPlayer()
+printMap()
+reset()
 
 while True:
-    setPlayer()
-    printMap()
-    reset()
     move()
 
 
