@@ -53,14 +53,14 @@ def setPlayer():
         #gy += 1
 
     if currentPos[0] == -1:
-        currentPos[0] = 5
+        currentPos[0] = 4
         #gx -= 1
 
     if currentPos[1] == -1:
-        currentPos[1] = 5
+        currentPos[1] = 4
        # gy -= 1
     
-
+    print(currentPos)
     currentMap[currentPos[0]][currentPos[1]] = 'O'
     
 
