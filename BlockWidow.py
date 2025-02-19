@@ -1,4 +1,5 @@
 import glob
+import random
 from time import sleep
 
 defaultMap = [
@@ -24,11 +25,14 @@ mapTileCount = [0,0]
 mapPos = [3,3]
 mapTile = [0,0]
 
+global onPlace
+onPlace = False
+
 gasStationLocatons = [
         [-12, 78], 
         [45, -65], 
         [-34, 22], 
-        [9, -87], 
+        [9, 9], 
         [-56, 33],
         [14, -99], 
         [72, 41], 
@@ -85,6 +89,10 @@ locationsonScreenList = [
         [5, 1]
     ]
 
+currentGasStationslist = [
+        [9,9,'Shell']
+    ]
+
 def locationsOnScreen():
     k = 0
     while k < mapTile[0] and mapTile[0] > 0:
@@ -120,22 +128,36 @@ def locationsOnScreen():
     mapTile[0] = 0
     mapTile[1] = 0
 
-    
+    """
+    print the location on screen list 
+
     for i in range(5):
         for j in range(5):
             print(locationsonScreenList[i * 5 + j], end=' ')
         print()
+    """
 
+    for value in locationsonScreenList:
+        x = value[0]
+        y = value[1]
+        
+        for place in gasStationLocatons:
+            xP = place[0]
+            yP = place[1]
+            
+            if x == xP and y == yP:
+                xP = (xP -(mapTileCount[0]*5)) -1
+                yP = (yP -(mapTileCount[0]*5)) -1
+               
                 
-    
 
-
+                currentMap[xP][yP] = '=' 
 
 
 def printMap():
     print('\n')
     print(mapPos)
-    print(mapTile)
+    
     for row in currentMap:
         for element in row:
             print(element, end=" ")
@@ -170,10 +192,11 @@ def setPlayer():
         mapTile[0] -= 1
 
     
-    
+    if currentMap[currentPos[0]][currentPos[1]] == '=':
+        global onPlace
+        onPlace = True
     currentMap[currentPos[0]][currentPos[1]] = 'O'
     
-
 
 def move():
     
@@ -194,18 +217,40 @@ def move():
         elif i == 'w':
             currentPos[0] -= 1
             mapPos [1] += 1
-
-
+        
+        locationsOnScreen()
         setPlayer()
         printMap()
-        locationsOnScreen()
         reset()
+        
+def place():
+    if onPlace:
+        print('You have landed on a gas station')
+        for gasStatin in currentGasStationslist:
+            print(gasStatin[0],gasStatin[1],gasStatin[2])
+            if gasStatin[0] == mapPos[0] and gasStatin[1] == mapPos[1]:
+                print('\n'+gasStatin[3])
+                print('Working')
+                sleep(4)
+            else:
+                newRow = [currentPos[0],currentPos[1],random.choice(['Shell', 'Chevron', 'Exxon', 'BP', 'Sunoco', 'Mobil', 'Valero'])]
+                currentGasStationslist.append(newRow)
+                for gasStatin in currentGasStationslist:
+                    if gasStatin[0] == mapPos[0] and gasStatin[1] == mapPos[1]:
+                        print(currentGasStationslist)
+                        sleep(5)
+                        print('\n'+gasStatin[2])
+                        print('Working2')
+                        sleep(4)
+
+
 
 setPlayer()
 printMap()
 reset()
 
 while True:
+    place()
     move()
 
 
