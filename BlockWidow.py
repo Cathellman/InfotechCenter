@@ -2,72 +2,10 @@
 print('\n<--************************************-->\n')
 
 
-#Import Libraries Here!
-
+# Import Libraries Here!
 import random
 import sys
 from time import sleep
-
-# Weather Function to determine the weather
-
-global delay
-delay = 0.5
-
-def weather():
-
-    #Random Choice of weather condition
-
-    weatherForecastList = ['snowing', 'blizzard', 'icy', 'rainy', 'windy', 'sunny', 'death']
-    weatherCondition = random.choice(weatherForecastList)
-
-    if weatherCondition == 'death':
-        if random.randint(0,50) == 50:
-           return weatherCondition
-        else:
-            weather()
-    return weatherCondition
-
-# VRS code to print the weather message, after choosing a random weather condition
-
-def vehicleResponcseSystem():
-
-    # Stores a random weather condition into the 'currentWeather' var
-    # Then it gose through and cheackts to see what the random one matches , then prints message
-
-    currentWeather = weather()
-
-    if currentWeather == 'snowing':
-        print("\nThe National Weather Service has updated our alarm by 30 minutes because of the snow\n\n Weather Condition: ", currentWeather)
-        sleep(delay)
-        print("\nVRS has been engaged only allowing us to drive 55MPH.")
-    elif currentWeather == 'blizzard':
-        print("\nThe National Weather Service has updated our alarm by 60 minutes because of the blizzard\n\n Weather Condition: ", currentWeather)
-        sleep(delay)
-        print("\nVRS has been engaged only allowing us to drive 10MPH.")
-    elif currentWeather == 'icy':
-        print("\nThe National Weather Service has updated our alarm by 30 minutes because its icy\n\n Weather Condition: ", currentWeather)
-        sleep(delay)
-        print("\nVRS has been engaged only allowing us to drive 30MPH.")
-    elif currentWeather == 'rainy':
-        print("\nThe National Weather Service has updated our alarm by 15 minutes because its rainy\n\n Weather Condition: ", currentWeather)
-        sleep(delay)
-        print("\nVRS has been engaged only allowing us to drive 55MPH.")
-    elif currentWeather == 'windy':
-        print("\nThe National Weather Service has updated our alarm by 10 minutes because its windy\n\n Weather Condition: ", currentWeather)
-        sleep(delay)
-        print("\nVRS has been engaged only allowing us to drive 55MPH.")
-    elif currentWeather == 'sunny':
-        print("\nThe National Weather Service has not updated anything, its a good day!\n\n Weather Condition: ", currentWeather)
-        sleep(delay)
-        print("\nVRS has been disengaged, drive safe")
-    elif currentWeather == 'death':
-        print("Your Dead.")
-        sleep(delay)
-        print("\nYouve been cooked, Dirve safe :)")
-    else:
-        print("Error In The Code, Not A Proper Choice!")
-
-
 
 
 # ANSI escape codes for terminal colors
@@ -96,7 +34,7 @@ while x != 20:
    ellipsis += 1  # Increment the number of dots to simulate progress
 
    # Write the message to stdout (console) without a newline, with a reset color at the end
-   sys.stdout.write(f"\r{message}{RESET}")  
+   sys.stdout.write(f"\r{message}{RESET}")
    sleep(.3)  # Pause for 0.5 seconds to simulate a delay between updates
 
    # Reset the ellipsis counter after 3 dots (creates a repeating cycle of 0-3 dots)
@@ -106,5 +44,75 @@ while x != 20:
    # Once the loop reaches 20 iterations, print the final boot message in bold green
    if x == 20:
        print(f"\n\n{BOLD}{GREEN}Operating System Booted Up - Retina Scanned - Access Granted\n{RESET}")
+
+
+# Weather Function to determine the weather
+global delay
+delay = 0.5
+
+
+def weather():
+    # Random Choice of weather condition
+    weatherForecastList = ['snowing', 'blizzard', 'icy', 'rainy', 'windy', 'sunny']
+    weatherCondition = random.choice(weatherForecastList)
+    return weatherCondition
+
+
+# Weather conditions and their associated messages and speeds
+weather_dict = {
+    'snowing': {
+        'alert_time': 30,
+        'speed': 55,
+        'message': "The National Weather Service has updated our alarm by 30 minutes because of the snow."
+    },
+    'blizzard': {
+        'alert_time': 60,
+        'speed': 10,
+        'message': "The National Weather Service has updated our alarm by 60 minutes because of the blizzard."
+    },
+    'icy': {
+        'alert_time': 30,
+        'speed': 30,
+        'message': "The National Weather Service has updated our alarm by 30 minutes because it's icy."
+    },
+    'rainy': {
+        'alert_time': 15,
+        'speed': 55,
+        'message': "The National Weather Service has updated our alarm by 15 minutes because it's rainy."
+    },
+    'windy': {
+        'alert_time': 10,
+        'speed': 55,
+        'message': "The National Weather Service has updated our alarm by 10 minutes because it's windy."
+    },
+    'sunny': {
+        'alert_time': 0,
+        'speed': 0,
+        'message': "The National Weather Service has not updated anything, it's a good day!"
+    }
+}
+
+
+# VRS code to print the weather message, after choosing a random weather condition
+def vehicleResponcseSystem():
+    # Stores a random weather condition into the 'currentWeather' var
+    # Then it goes through and checks to see what the random one matches, then prints message
+    currentWeather = weather()
+
+
+    # Get the weather data from the dictionary
+    weather_data = weather_dict.get(currentWeather)
+
+    # Print the weather data
+    print(f"\n{weather_data['message']}\n\n Weather Condition: {currentWeather}")
+    sleep(delay)
+
+    if currentWeather != 'sunny':
+        print(f"\nVRS has been engaged only allowing us to drive {weather_data['speed']} MPH.")
+    else:
+        print("\nVRS has been disengaged, drive safe!")
+
+
+
 
 vehicleResponcseSystem()
