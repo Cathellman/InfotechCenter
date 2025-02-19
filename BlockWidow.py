@@ -162,7 +162,7 @@ def printMap():
         for element in row:
             print(element, end=" ")
         print()
-    sleep(0.3)
+    
     
 def reset():
    oldPos[0] = currentPos[0]
@@ -220,11 +220,14 @@ def move():
         
         locationsOnScreen()
         setPlayer()
+        sleep(0.3)
         printMap()
         reset()
         
 def place():
+    global onPlace
     if onPlace:
+        """
         print('You have landed on a gas station')
         for gasStatin in currentGasStationslist:
             print(gasStatin[0],gasStatin[1],gasStatin[2])
@@ -242,6 +245,10 @@ def place():
                         print('\n'+gasStatin[2])
                         print('Working2')
                         sleep(4)
+                        """
+        print("\nGasStation\n")
+        
+        onPlace = False
 
 
 
@@ -252,6 +259,7 @@ reset()
 while True:
     place()
     move()
+
 
 
 
