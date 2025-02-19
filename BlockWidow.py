@@ -20,6 +20,7 @@ currentMap = [
 oldPos = [2,2]
 currentPos = [2,2]
 
+mapTileCount = [0,0]
 mapPos = [3,3]
 mapTile = [0,0]
 
@@ -57,17 +58,76 @@ gasStationLocatons = [
     ]
 
 locationsonScreenList = [
-        [0, 0], [0, 0], [0, 0], [0, 0], 
-        [0, 0], [0, 0], [0, 0], [0, 0],
-        [0, 0], [0, 0], [0, 0], [0, 0], 
-        [0, 0], [0, 0], [0, 0], [0, 0],
-        [0, 0], [0, 0], [0, 0], [0, 0], 
-        [0, 0], [0, 0], [0, 0], [0, 0],
-        [0, 0]
+        [1, 5], 
+        [1, 4], 
+        [1, 3], 
+        [1, 2], 
+        [1, 1],
+        [2, 5], 
+        [2, 4], 
+        [2, 3], 
+        [2, 2], 
+        [2, 1],
+        [3, 5], 
+        [3, 4], 
+        [3, 3], 
+        [3, 2], 
+        [3, 1],
+        [4, 5], 
+        [4, 4], 
+        [4, 3], 
+        [4, 2], 
+        [4, 1],
+        [5, 5], 
+        [5, 4], 
+        [5, 3], 
+        [5, 2], 
+        [5, 1]
     ]
 
 def locationsOnScreen():
-    startingNumber = []
+    k = 0
+    while k < mapTile[0] and mapTile[0] > 0:
+       k += 1
+       
+       for value in locationsonScreenList:
+            value[0] = value[0] + 5
+    
+    k = 0
+    while k > mapTile[0] and mapTile[0] < 0:
+       k -= 1
+       for value in locationsonScreenList:
+            value[0] = value[0] - 5
+
+    k = 0
+    while k < mapTile[1] and mapTile[1] > 0:
+        k += 1
+        
+        for value in locationsonScreenList:
+            value[1] = value[1] + 5
+
+    k = 0
+    while k > mapTile[1] and mapTile[1] < 0:
+        k -= 1
+        
+        for value in locationsonScreenList:
+            value[1] = value[1] - 5
+
+
+    mapTileCount[0] += mapTile[0]
+    mapTileCount[1] += mapTile[1]
+    
+    mapTile[0] = 0
+    mapTile[1] = 0
+
+    
+    for i in range(5):
+        for j in range(5):
+            print(locationsonScreenList[i * 5 + j], end=' ')
+        print()
+
+                
+    
 
 
 
@@ -80,7 +140,7 @@ def printMap():
         for element in row:
             print(element, end=" ")
         print()
-    sleep(0.5)
+    sleep(0.3)
     
 def reset():
    oldPos[0] = currentPos[0]
@@ -138,6 +198,7 @@ def move():
 
         setPlayer()
         printMap()
+        locationsOnScreen()
         reset()
 
 setPlayer()
